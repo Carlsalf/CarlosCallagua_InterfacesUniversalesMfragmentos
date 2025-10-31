@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Permisos requeridos (API 33+) -->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+
+    <!-- Compatibilidad con versiones ≤ 32 -->
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+
+    <!-- (Opcional) acceso a cámara si más adelante usas CameraX/captura directa -->
+    <!-- <uses-permission android:name="android.permission.CAMERA" /> -->
+
+    <!-- Visibilidad para cámara/galería (requisito del profe) -->
+    <queries>
+        <intent>
+            <action android:name="android.media.action.IMAGE_CAPTURE" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.PICK" />
+            <data android:mimeType="image/*" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.GET_CONTENT" />
+            <data android:mimeType="image/*" />
+        </intent>
+    </queries>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Filmoteca">
+
+        <!-- Lanzador -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- About -->
+        <activity
+            android:name=".AboutActivity"
+            android:exported="false" />
+
+        <!-- Ej.1: Detalle (Views/XML) -->
+        <activity
+            android:name=".FilmDataActivity"
+            android:exported="false" />
+
+        <!-- Ej.2: Edición (Views/XML) -->
+        <activity
+            android:name=".FilmEditActivity"
+            android:exported="false" />
+
+        <!-- Listas en XML/Detalle XML (si las usas) -->
+        <activity
+            android:name=".FilmListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FilmDetailActivity"
+            android:exported="false" />
+
+        <!-- Ej.4: Compose (Lista/Detalle/Edición) -->
+        <activity
+            android:name=".FilmListComposeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FilmDetailComposeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FilmEditComposeActivity"
+            android:exported="false" />
+
+        <!-- FileProvider para “Captura Fotografía” -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+    </application>
+</manifest>
