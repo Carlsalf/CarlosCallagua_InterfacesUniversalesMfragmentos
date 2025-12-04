@@ -41,7 +41,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Filmoteca">
 
-        <!-- Launcher -->
+        <!-- Launcher: sigue siendo MainActivity -->
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -50,6 +50,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Activity para la práctica de fragmentos -->
+        <activity
+            android:name=".FilmFragmentsActivity"
+            android:label="Filmoteca (Fragments)"
+            android:exported="false" />
 
         <!-- Parte 1 (XML/Views) -->
         <activity android:name=".AboutActivity" android:exported="false" />
@@ -77,5 +83,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+
     </application>
 </manifest>
